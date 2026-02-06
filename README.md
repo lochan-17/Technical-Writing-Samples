@@ -42,5 +42,5 @@ I am available for project-based work and specialized documentation audits.
 ---
 
 ## 📫 Let's Connect
-* **Discord:** [Your Discord Username]
+* **Discord:** [lochan-17]
 * **Payment Preference:** BTC (on-chain or Lightning) / SOL / USDC
