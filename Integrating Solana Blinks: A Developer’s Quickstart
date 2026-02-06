@@ -1,0 +1,80 @@
+[Sample 1] Integrating Solana Blinks: A Developer’s Quickstart
+
+Overview
+Solana Blinks (Blockchain Links) are a 2026 standard that allows any Solana Action to be rendered as a rich, interactive interface on any platform that supports a URL (Twitter, Discord, etc.). This guide teaches developers how to turn a standard "Donate SOL" action into a shareable Blink.
+
+1. Prerequisites
+Node.js v18 or higher.
+
+Solana CLI installed.
+
+A basic understanding of Next.js or Express.
+
+The @solana/actions-sdk package.
+
+Bash
+npm install @solana/actions-sdk @solana/web3.js
+2. Setting up the Action API
+A Blink starts with a standard API that follows the Solana Actions specification. You need two main endpoints: GET (to describe the action) and POST (to execute the transaction).
+
+The GET Response
+This tells the "Blink client" (like a Twitter browser extension) what to display to the user.
+
+The Script usually:
+// pages/api/donate/get.ts
+export const GET = async (req: Request) => {
+  const payload = {
+    icon: "https://your-dapp.com/donate-icon.png",
+    title: "Support the Creator",
+    description: "Donate 0.1 SOL to support this project's development.",
+    label: "Donate 0.1 SOL",
+  };
+
+  return Response.json(payload, {
+    headers: { 'Access-Control-Allow-Origin': '*' } // Critical for Blinks
+  });
+};
+3. Handling the POST Transaction
+When the user clicks the "Donate" button on the Blink, the client sends a POST request to your server. Your server then creates a transaction for the user to sign.
+
+The Script usually:
+// pages/api/donate/post.ts
+import { Transaction, SystemProgram, PublicKey } from "@solana/web3.js";
+
+export const POST = async (req: Request) => {
+  const { account } = await req.json(); // The user's wallet address
+  
+  const transaction = new Transaction().add(
+    SystemProgram.transfer({
+      fromPubkey: new PublicKey(account),
+      toPubkey: new PublicKey("YOUR_RECEIVE_WALLET_ADDRESS"),
+      lamports: 100000000, // 0.1 SOL
+    })
+  );
+
+  // Set the latest blockhash
+  transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
+  transaction.feePayer = new PublicKey(account);
+
+  const payload = {
+    transaction: transaction.serialize({ requireAllSignatures: false }).toString("base64"),
+    message: "Thank you for your donation!",
+  };
+
+  return Response.json(payload);
+};
+4. Testing Your Blink
+To see your Blink in action before deploying:
+
+Use the Solana Blinks Inspector tool.
+
+Paste your local API URL (e.g., http://localhost:3000/api/donate).
+
+Ensure your CORS headers are set to *, otherwise, the client will block the request.
+
+Why this sample works for your portfolio:
+It’s Current: It uses the 2026 Actions SDK.
+
+It’s Practical: Every project wants a "Donate" or "Buy" button they can share on social media.
+
+It’s Clean: It uses TypeScript and follows the official Solana style guide.
