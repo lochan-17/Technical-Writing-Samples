@@ -16,7 +16,7 @@ I focus on the **Solana ecosystem**, translating the latest 2026 innovations—s
 **Focus:** Developer Onboarding & Social Composability
 * **Summary:** A comprehensive guide on turning standard dApp actions into shareable "Blinks" for social media platforms.
 * **Tech Stack:** Solana Actions SDK, React, Markdown.
-* [Link to File](./Integrating Solana Blinks: A Developer’s Quickstart)
+* [Link to File](https://github.com/lochan-17/Technical-Writing-Samples/blob/main/Integrating%20Solana%20Blinks%3A%20A%20Developer%E2%80%99s%20Quickstart)
 
 ### 2. [Sample 2 Title: e.g., Jito Restaking & VRT API Reference]
 **Focus:** Financial Infrastructure & API Standards
