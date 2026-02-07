@@ -12,7 +12,7 @@ I focus on the **Solana ecosystem**, translating the latest 2026 innovations—s
 
 ## 📂 Project Portfolio (Solana 2026)
 
-### 1. [Sample 1 Title: e.g., Solana Blinks Integration Guide]
+### 1. [Sample 1 Title: Solana Blinks Integration Guide]
 **Focus:** Developer Onboarding & Social Composability
 * **Summary:** A comprehensive guide on turning standard dApp actions into shareable "Blinks" for social media platforms.
 * **Tech Stack:** Solana Actions SDK, React, Markdown.
